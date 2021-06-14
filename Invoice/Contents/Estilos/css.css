@@ -1,0 +1,719 @@
+
+table td{
+  border:none !important;
+}
+
+.rodape{
+ background: #343a40;
+  height: 60px;
+  color: #fff;
+  font-size: 1.2em;
+}
+
+#date{
+  font-weight: bold;
+}
+a:link {
+    color: #B0BEC5;
+    margin-left: 12px;
+}
+
+a:link, a:visited {
+   /* background-color: #B0BEC5;*/
+    color: #000;
+    padding: 9px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+a:link {
+    color: #B0BEC5;
+    margin-left: 12px;
+}
+
+a:link, a:visited {
+   /* background-color: #B0BEC5;*/
+    color: #000;
+    padding: 9px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+
+ 
+ .text-left{
+  background: #1111;
+   width: 100%;
+  height: 450px;
+  border: 2px solid #cccc;
+  overflow:scroll;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   margin-top: 15px;
+ }
+ 
+.sidenav img{
+  margin-top: 20px;
+}
+
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  vertical-align: middle;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+.navbar-inverse{
+background: #E1BEE7;
+
+}
+.sidenav{
+  background:#82B1FF;
+  text-align: center;
+  width: 100%;
+  height: 550px;
+  border: 2px solid #cccc;
+  overflow:scroll;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   margin-top: 15px;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+.menu{
+  background: #6189a3;
+  width: 100%
+  height:150px;
+
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+ th{
+    border: 1px solid black;
+    background: #2196F3;
+    height: 40px;
+}
+td{
+  
+  height: 40px;
+}
+.textright{
+  text-align: right;
+
+}
+.bordas{
+   border: 1px solid black;
+  border-radius: 5px;
+  width:100%;
+  background-color: #3fab9e;
+  font-size: 1.5em;
+  color: #fff;
+  padding: 10px;
+}
+.dados_clientes,.dados_venda{
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+#detalhe_venda tr{
+  background-color: #FFF !important;
+}
+#detalhe_venda td{
+  border: 1px solid #CCC;
+}
+#detalhe_Pedido tr{
+  background-color: #FFF !important;
+}
+#detalhe_Pedido td{
+  border: 1px solid #CCC;
+}
+#add_product_venda{
+  display: none;
+}
+.btn-default{
+  background-color: #FFFFFF;
+}
+.fa-trash-alt{
+  color: #F50057;
+}
+h5{
+  color:#00C853;
+}
+.btn_view{
+  background-color: #1faac8;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.btn_viewStock{
+  background-color:#1DE9B6;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.btn_viewPreco{
+  background-color:#CDDC39;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.btn_anular{
+  background-color: #F50057;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.btn_apagar{
+  background-color: #FFECB3;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.form_search_date{
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  margin: 10px auto;
+
+}
+.Activo, .Desactivo{
+color: #fff;
+background-color: #60a756;
+text-align: center;
+border-radius: 5px;
+padding: 4px 15px;
+}
+
+.pagada, .anulada{
+color: #fff;
+background-color: #60a756;
+text-align: center;
+border-radius: 5px;
+padding: 4px 15px;
+}
+.anulada{
+  background-color: #f36a6a;
+}
+.inactive{  
+background-color: #A4A4A4;
+cursor: default;
+color: #CCC
+}
+
+.totalFactura{
+   display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: space-between;
+}
+.div_accao{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: center;
+}
+.Desactivo{
+  background-color: #f36a6a;
+}
+.reactivar{
+  background-color: #60a756;
+  color: #ccc;
+
+}
+
+#Categoria{
+  color: #E91E63;
+}
+#mensage{
+  color: #E91E63;
+}
+#form_anular_factura{
+  width: 420px;
+  text-align: center;
+  background-color: #fff;
+}
+
+#modal {
+
+      position:absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+z-index:9000;  
+background-color:#000; 
+display:none;
+text-align: center;
+}
+
+#boxes .bodyModal {
+position:absolute;
+width:440px;
+height:200px;
+display:block;
+z-index:9999;
+padding:20px;
+background-color: #FFFF;
+margin-left: 40%;
+margin-top: 10%;
+}
+.btn_Sair{
+   background-color: #D50000;
+  border: 0;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+/* Personalize a janela modal aqui. Você pode adicionar uma imagem de fundo. */
+#boxes #dialog {
+width:375px;
+height:203px;
+}
+/* posiciona o link para fechar a janela */
+#tbnClose {
+display:block; 
+text-align:right;
+}  
+.fa-cubes
+{
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 3px;
+  color:#1DE9B6;
+}
+
+.btn_addProdOfice{
+  background-color: #0000CD;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 12px;
+  line-height: 30px;
+  color: #777;
+
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact input[type="tel"],
+#contact input[type="password"],
+#contact textarea,
+#contact input[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+}
+
+#contact {
+  background: #F9F9F9;
+  padding: 10px;
+  margin: 100px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#contact h3 {
+  display: block;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+
+
+fieldset {
+  border: medium none !important;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact input[type="tel"],
+#contact input[type="password"],
+#contact textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 15px;
+  font-size: 1.3em;
+}
+
+#contact input[type="text"]:hover,
+#contact input[type="email"]:hover,
+#contact input[type="tel"]:hover,
+#contact input[type="password"]:hover,
+#contact textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+
+#contact input[type="submit"] {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+#contact input[type="submit"]:hover {
+  background: #43A047;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#contact input[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.copyright {
+  text-align: center;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+
+.navbar .navbar-brand img{
+width: 50%;
+  
+}
+.navbar .navbar-nav li a{
+  font-size: 1.1em;
+  color: #fff;
+}
+.navbar .navbar-nav .nav-item a{
+font-size: 1.1em;
+  color: #fff;
+}
+.navbar .navbar-nav .nav-item .dropdown-menu a{
+  font-size: 1.1em;
+  color: #000;
+}
+.container-fluid .text-left .container .table-striped thead tr th{
+  color: #000;
+  background: #3fab9e;
+}
+
+
+
+.tela_titulo{
+      width: 100%;
+      height: 100px;
+      background: #0f506f;
+      
+      margin-top: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+ header nav{
+  width: 100%;
+
+ }
+    header nav .tela_titulo ul>li{
+        float: left;
+        list-style-type: none;
+     
+      padding: 20px;
+      color: #fff;
+    }
+    .tela_titulo table tr td a i{
+      margin: 20px 10px;
+      
+    }
+
+    header nav .tela_titulo h5{
+      color: #FF1493;
+    }
+
+     header nav .linha_menu{
+      width: 100%;
+      background: #3c3e3b;
+      display: flex;
+      height: 80px;
+
+     }
+      .linha_menu img{
+        width: 50%;
+        height: 60px;
+
+      }
+         header nav .linha_menu ul > li{
+          display: block;
+          float: left;
+          background: #43a8a0;
+          margin: 10px 30px 10px 10px;
+          padding: 10px 10px 10px 10px;
+
+         }
+    
+    
+    .tela_titulo h2{
+      color: #ffff;
+      font-size: 30px;
+      }
+      
+    
+
+
+
+    .linha_menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  
+}
+
+.linha_menu li {
+  float: left;
+}
+
+.linha_menu li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+}
+.linha_menu li.dropdown_1 {
+  display: inline-block;
+}
+
+.linha_menu .dropdown-content_1 {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.linha_menu .dropdown-content_1 a {
+  color: black;
+  padding: 12px 10px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.linha_menu .dropdown-content_1 a:hover {background-color: #f1f1f1;}
+
+.dropdown_1:hover .dropdown-content_1 {
+  display: block;
+}
+.linha_menu ul li i{
+color: #191970;
+font-size: 30px;
+letter-spacing: 5px;
+
+}
+.linha_menu ul li a{
+  color: #fff;
+  font-size: 16px;
+}
+
+  
+}
+section .body_text .container{
+
+   width: 100%;
+  height: 600px;
+   overflow:scroll;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+
+   background: #000;
+
+}
+
+section{
+
+   width: 100%;
+  height: 500px;
+   overflow:scroll;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+position: fixed;
+
+
+}

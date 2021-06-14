@@ -1,0 +1,419 @@
+[class*=sidebar-dark-] .sidebar a {
+	color: #fff;
+}
+
+.info-box{
+
+	width: 90%;
+
+}
+.navbar-nav{
+	margin-right: 80%;
+}
+.navbar-nav .fa-power-off{
+	cursor: pointer;
+	font-size: 30px;
+	color: red;
+
+	
+}
+
+.text-left{
+  background: #1111;
+   width: 100%;
+  height: 450px;
+  border: 2px solid #cccc;
+  overflow:scroll;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   margin-top: 15px;
+ }
+ 
+* {
+  box-sizing: border-box;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+.navbar-inverse{
+background: #E1BEE7;
+
+}
+.sidenav{
+  background:#82B1FF;
+  text-align: center;
+  width: 100%;
+  height: 550px;
+  border: 2px solid #cccc;
+  overflow:scroll;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+   margin-top: 15px;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+
+
+th{
+   
+    background: #13979c;
+    height: 40px;
+    color: #fff;
+}
+
+.textright{
+  text-align: right;
+
+}
+.bordas{
+   border: 1px solid black;
+  border-radius: 5px;
+  width:100%;
+  background-color: #13979c;
+  font-size: 1.5em;
+  color: #fff;
+  padding: 10px;
+}
+.dados_clientes,.dados_venda{
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+#detalhe_venda tr{
+  background-color: #FFF !important;
+}
+#detalhe_venda td{
+  border: 1px solid #CCC;
+}
+#detalhe_Pedido tr{
+  background-color: #FFF !important;
+}
+#detalhe_Pedido td{
+  border: 1px solid #CCC;
+}
+#add_product_venda{
+  display: none;
+}
+.btn-default{
+  background-color: #FFFFFF;
+}
+.fa-trash-alt{
+  color: #F50057;
+}
+h5{
+  color:#00C853;
+}
+.btn_view{
+  background-color: #1faac8;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.btn_viewStock{
+  background-color:#1DE9B6;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.btn_viewPreco{
+  background-color:#CDDC39;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.btn_anular{
+  background-color: #F50057;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.btn_apagar{
+  background-color: #FFECB3;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+.form_search_date{
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  margin: 10px auto;
+
+}
+.Activo, .Desactivo{
+color: #fff;
+background-color: #60a756;
+text-align: center;
+border-radius: 5px;
+padding: 4px 15px;
+}
+
+.pagada, .anulada,.vencido{
+color: #fff;
+background-color: #60a756;
+text-align: center;
+border-radius: 5px;
+padding: 4px 15px;
+}
+.anulada{
+  background-color: #f36a6a;
+}
+.vencido{
+  background-color: #FF00FF;
+}
+.inactive{  
+background-color: #A4A4A4;
+cursor: default;
+color: #CCC
+}
+
+.totalFactura{
+   display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: space-between;
+}
+.div_accao{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: center;
+}
+.Desactivo{
+  background-color: #f36a6a;
+}
+.reactivar{
+  background-color: #60a756;
+  color: #ccc;
+
+}
+
+#Categoria{
+  color: #E91E63;
+}
+#mensage{
+  color: #E91E63;
+}
+#form_anular_factura{
+  width: 420px;
+  text-align: center;
+  background-color: #fff;
+}
+
+
+
+.btn_Sair{
+   background-color: #D50000;
+  border: 0;
+  border-radius: 25px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 0 3px;
+  color: #fff;
+}
+/* Personalize a janela modal aqui. Você pode adicionar uma imagem de fundo. */
+#boxes #dialog {
+width:375px;
+height:203px;
+}
+/* posiciona o link para fechar a janela */
+#tbnClose {
+display:block; 
+text-align:right;
+}  
+
+.fa-user{
+
+}
+
+
+.fa-cubes, .fa-users, .fa-plus-square, .fa-table
+{
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 3px;
+  color:#13979c;
+  font-size: 30px;
+}
+.dados_inline h5, .dados_inline button, .dados_inline span, .dados_inline input, .dados_inline a{
+
+	margin-right: 20px;
+}
+
+
+
+	#div_registo_cliente{
+		display: none;
+	}
+
+	#btnActualizaCliente, #div_actualizacliente{
+		display: none;
+	}
+	#msgErrorAgregar{
+		color: red;
+	}
+	.container-fluid .container .row .bordas .table-borderless .form-group tr td label{
+		font-size: 1.85em;
+	}
+	.container-fluid .content .text-left .title_page h3{
+		color: #000;
+	}
+	.container-fluid .content .text-left .title_page h3 i{
+		color: #3fab9e;
+	}
+	#detalhe_venda{
+		font-size: 1.2em;
+		color: #000;
+	}
+	#detalhe_total_venda{
+		font-size: 1.3em;
+		color: #000;
+	}
+	#msgActualizarE{
+		color: blue;
+		font-size: 1.8em;
+	}
+
+	
+#msgMensagem{
+	font-size: 16px;
+	font-weight: 400;
+	color: red;
+}
+.form-control{
+	width: 100%;
+}
+
+
+.message
+{
+  background-color: #F3E2A9;
+}
+#Categoria{
+  color: #E91E63;
+}
+#mensage{
+  color: #E91E63;
+}
+.container-fluid .content .text-left .table{
+  font-size: 1.2em;
+  color: #000;
+}
+.table-borderless .fa-user-plus{
+  font-size: 40px;
+  color: #3fab9e;
+}
+ #btnPesquisarContrato{
+    background-color: #13979c;
+    border: none;
+    border-radius: 10px;
+    width: 55px;
+    height: 40px;
+  }
+  #btnPesquisarContrato i{
+    color: #fff;
+  }
