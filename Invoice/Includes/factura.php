@@ -295,6 +295,21 @@ $('#add_product_venda').click(function(e){
 }
 });
 
+
+$('#txt_desconto').keyup(function(e){
+      e.preventDefault();
+ if($(this).val() > 0){
+    var desconto=$(this).val();
+       var valorTotal=$('#txt_preco').val() * $('#txt_quant_produto').val();
+       var percentagem=valorTotal*(desconto/100);
+
+       var valorDescontado=valorTotal-percentagem;
+       $('#txt_preco_total').html(valorDescontado);
+ }
+      
+     //alert(valorTotal):
+});
+
 //Processar factura
  $('#btn_facturar_venda').click(function(e){
         e.preventDefault();
@@ -830,7 +845,8 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
       <th width="300px" colspan="3">Descrição</th>          
       <th width="120px">Quantidade</th>
       <th class="textright"> Preço</th>
-      <th class="textright"> Preço total </th>
+        <th class="textright">Desconto</th>
+      <th class="textright">Total </th>
       <th> Acção</th>
     </tr>
 
@@ -840,8 +856,9 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
       
       <td><input type="number" class="form-control" name="txt_quant_produto" id="txt_quant_produto" placeholder="0" min="1"></td>
       <td><input type="text" id="txt_preco" class="form-control" name="txt_preco" placeholder="0.00"></td>
+       <td><input type="text" id="txt_desconto" class="form-control" name="txt_desconto" placeholder="Desconto em %"></td>
       <td id="txt_preco_total" class="textright">0.00</td>
-      <td><button id="add_product_venda" class="btn btn-info"><i class="fas fa-plus"></i>Agregar</button></td>
+      <td><button id="add_product_venda" class="btn btn-info"><i class="fas fa-plus"></i></button></td>
     </tr>
     <tr><td colspan="6"><span id="msgErrorAgregar"></span></td></tr>
    
@@ -851,7 +868,8 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
       <th colspan="3">Descrição</th>
       <th>Quantidade</th>
       <th class="textright">Preço</th>
-      <th class="textright">Preço Total</th>
+      <th class="textright">Desconto</th>
+      <th class="textright">Total</th>
       <th>Acção</th>
     </tr>
   </thead>
