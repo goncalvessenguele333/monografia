@@ -260,7 +260,7 @@ public function actualizaDadosEmpresa($id, $fields=array()){
 	}
 
 public function detalheTotalFactura($codFactura){
-	$sql=$this->_db->consulta("SELECT nr_factura, usuario, cod_cliente, subtotal_factura, iva_factura, total_factura, estado, dataVenda FROM tb_factura WHERE nr_factura='$codFactura'");
+	$sql=$this->_db->consulta("SELECT nr_factura, usuario, cod_cliente, subtotal_factura,perc_desconto,subTotal_descontado, iva_factura, total_factura, estado, dataVenda FROM tb_factura WHERE nr_factura='$codFactura'");
 	if($sql){
 		return $sql->results();
 	}
@@ -326,8 +326,7 @@ public function TotalCotaco(){
 }
 
 public function detalheFactura($codi_prod){
-	$sql=$this->_db->consulta("SELECT df.correlativo, df.cod_produto, df.description, df.quantidade,                      
-								df.preco, df.subtotal_prod FROM tb_detalhe_factura df INNER JOIN tb_factura f ON df.nr_factura=f.nr_factura WHERE
+	$sql=$this->_db->consulta("SELECT df.correlativo, df.cod_produto, df.description, df.quantidade,df.preco, df.subtotal_prod,df.perc_desconto FROM tb_detalhe_factura df INNER JOIN tb_factura f ON df.nr_factura=f.nr_factura WHERE
 								 	 f.nr_factura='$codi_prod'");
 	if($sql){
 		return $sql->results();

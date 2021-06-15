@@ -169,22 +169,22 @@ $pdf->SetTextColor(0,0,0);
    
        $pdf->Cell(20,3,"_________________________________________________________________________________________________",0,0,'L');  
        // $pdf->SetFillColor(192,192,192);
-        $pdf->SetTextColor(0,0,0);
+        $pdf->SetTextColor(255,255,255);
        
-           $pdf->Ln(14);
-            $pdf->SetFillColor(192,192,192);
+           $pdf->Ln(10);
+            $pdf->SetFillColor(63,171,158);
         $pdf->SetFont('Times','B',11); 
           $pdf->SetLineWidth(0.5);
-         $pdf->Cell(18,12,utf8_decode('Serviço'),0,0,'C',1);
-        $pdf->Cell(95,12,utf8_decode('Descrição'),0,0,'C',1);
-         $pdf->Cell(12,12,'Qtd.',0,0,'C',1);
-        $pdf->Cell(23,12,utf8_decode('P. Unitário'),0,0,'L',1);
-          $pdf->Cell(15,12,utf8_decode('Desc. %'),0,0,'C',1);
-         $pdf->Cell(25,12,utf8_decode('Total Líquido'),0,0,'C',1);
+         $pdf->Cell(18,9,'Serviço',0,0,'C',1);
+        $pdf->Cell(95,9,utf8_decode('Descrição'),0,0,'C',1);
+         $pdf->Cell(12,9,'Qtd.',0,0,'C',1);
+        $pdf->Cell(23,9,utf8_decode('P. Unitário'),0,0,'L',1);
+          $pdf->Cell(15,9,utf8_decode('Desc. %'),0,0,'C',1);
+         $pdf->Cell(25,9,'Total Liquido',0,0,'C',1);
       $pdf->SetTextColor(0,0,0);
           //$pdf->Line(10,137.5,200,137.5);
 
-      $pdf->Ln(16);   
+      $pdf->Ln(12);   
      
         $pdf->SetFont('Times','',11);
 foreach ($prod->detalheFactura($coFact) as $lista) { 
@@ -200,8 +200,6 @@ foreach ($prod->detalheFactura($coFact) as $lista) {
              $pdf->Cell(20,5,escape($lista->subtotal_prod),0,0,'L');
               $pdf->Ln(11);   
   }
-  $pdf->Ln();   
-  $pdf->SetFont('Times','B',11);
   $pdf->Cell(20,5,"_________________________________________________________________________________________________",0,0,'L'); 
  $pdf->Ln(5); 
  
@@ -214,22 +212,17 @@ foreach ($prod->detalheFactura($coFact) as $lista) {
           $pdf->Cell(20,8,escape($lista->subtotal_factura),0,0,'L');
            $pdf->Ln(3);
             $pdf->Cell(140,5,"",0,0,'L'); 
-             $pdf->SetFont('Times','B',11);
-           $pdf->Cell(50,5,"_________________________",0,0,'R'); 
+           $pdf->Cell(50,5,"________________________",0,0,'R'); 
           $pdf->Ln(3); 
           
            $pdf->SetFont('Times','B',11);
            $pdf->Cell(110,8,'Quadro Resumo do IVA',0,0,'L');
                 $pdf->SetFont('Times','',11);          
-        $pdf->Cell(60,8,utf8_decode('Desc.('.escape($lista->perc_desconto).'%): '),0,0,'R');
-
-      $valor_desconto= (escape($lista->subtotal_factura * escape($lista->perc_desconto))/100);
-
-          $pdf->Cell(20,8,$valor_desconto.'.00',0,0,'L');
+          $pdf->Cell(60,8,'Descontos: ',0,0,'R');
+          $pdf->Cell(20,8,"0.00",0,0,'L');
            $pdf->Ln(3);
             $pdf->Cell(140,5,"",0,0,'L'); 
-             $pdf->SetFont('Times','B',11);
-           $pdf->Cell(50,5,"_________________________",0,0,'R'); 
+           $pdf->Cell(50,5,"________________________",0,0,'R'); 
           $pdf->Ln(3); 
             $pdf->SetFont('Times','B',11);
             $pdf->Cell(20,8,'Taxa',0,0,'L'); 
@@ -238,19 +231,16 @@ foreach ($prod->detalheFactura($coFact) as $lista) {
             $pdf->Cell(60,8,utf8_decode('Motivo de Isenção'),0,0,'L');
             $pdf->SetFont('Times','',11);
             $pdf->Cell(25,8,'Sub.Total: ',0,0,'R');
-            $pdf->Cell(20,8,escape($lista->subTotal_descontado),0,0,'L');
-            $pdf->Ln(3);  
-             $pdf->SetFont('Times','B',11);    
+            $pdf->Cell(20,8,escape($lista->subtotal_factura),0,0,'L');
+            $pdf->Ln(3);      
             $pdf->Cell(100,5,"_________________________________________________________________",0,0,'L'); 
             $pdf->Cell(30,5,"",0,0,'L');
-             $pdf->SetFont('Times','B',11);
-          $pdf->Cell(60,5,"_________________________",0,0,'R');
-          $pdf->Ln(3);  
-           $pdf->SetFont('Times','',11);       
+          $pdf->Cell(60,5,"________________________",0,0,'R');
+          $pdf->Ln(3);         
          foreach ($dados->PesquisaCliente($codCl) as $listaI) {
           $pdf->Cell(20,8,escape($listaI->iva).'%',0,0,'L');
         }
-           $pdf->Cell(25,8,escape($lista->subTotal_descontado),0,0,'L');
+           $pdf->Cell(25,8,escape($lista->subtotal_factura),0,0,'L');
             $pdf->Cell(40,8,escape($lista->iva_factura),0,0,'L');
              $pdf->Cell(60,8,'',0,0,'L');
             foreach ($dados->PesquisaCliente($codCl) as $listaI) {
@@ -258,18 +248,16 @@ foreach ($prod->detalheFactura($coFact) as $lista) {
         }
          $pdf->Cell(20,8,escape($lista->iva_factura),0,0,'C');
           $pdf->Ln(3);
-           $pdf->SetFont('Times','B',11);
       $pdf->Cell(100,5,"_________________________________________________________________",0,0,'L'); 
       $pdf->Cell(30,5,"",0,0,'L');
-      $pdf->Cell(60,5,"_________________________",0,0,'R');
+      $pdf->Cell(60,5,"________________________",0,0,'R');
       $pdf->Ln(3);
        $pdf->SetFont('Times','B',11);
-
-          $pdf->Cell(170,10,'TOTAL(MZN): ',0,0,'R');
+          $pdf->Cell(170,10,'TOTAL(MT): ',0,0,'R');
           $pdf->Cell(20,10,escape($lista->total_factura),0,0,'C');   
         $pdf->Ln(3);
             $pdf->Cell(140,5,"",0,0,'L'); 
-           $pdf->Cell(50,5,"_________________________",0,0,'R'); 
+           $pdf->Cell(50,5,"________________________",0,0,'R'); 
         
          $pdf->Ln(); 
 
@@ -286,7 +274,6 @@ foreach ($prod->detalheFactura($coFact) as $lista) {
   $pdf->SetFont('Times','',11);   
  $pdf->Cell(130,8,utf8_decode('Pagamento por feito por Cheque, Deposito ou Transferência Bancária:'),0,0,'L');
  $pdf->Ln(3); 
-  $pdf->SetFont('Times','B',11);
   $pdf->Cell(20,5,"_________________________________________________________________",0,0,'L'); 
  $pdf->SetFont('Times','',11);
  
@@ -304,16 +291,14 @@ foreach ($prod->detalheFactura($coFact) as $lista) {
   $pdf->Cell(40,10,'1128581681003',0,0,'C'); 
   $pdf->Cell(60,10,'000301120858168100396',0,0,'R');
    $pdf->Ln();
-    $pdf->SetFont('Times','B',10);
-   $pdf->Cell(60,8,'IBAM - MZ59000301120858168100396 | ',0,0,'L');
+   $pdf->Cell(70,10,'IBAM - MZ59000301120858168100396 ',0,0,'L');
 
-  $pdf->Cell(35,8,' SWIFT - SBICMZMX | ',0,0,'L');
- $pdf->Cell(40,8,utf8_decode(' C/Móvel: 833211705 '),0,0,'L');
- $pdf->Cell(55,8,'____________________________',0,0,'R');  
-  $pdf->Ln(5);   
-  $pdf->Cell(135,8,'',0,0,'L');
-   $pdf->SetFont('Times','',11);
- $pdf->Cell(55,8,'Assinatura e carimbo',0,0,'C');
+  $pdf->Cell(60,10,'SWIFT - SBICMZMX',0,0,'L');
+
+ $pdf->Cell(60,10,'Assinatura e carimbo',0,0,'C');  
+  $pdf->Ln(8);   
+  $pdf->Cell(130,10,'Conta movel: (+258) 878552760',0,0,'L');
+ $pdf->Cell(60,10,'____________________________',0,0,'C');
   $pdf->Ln(8);   
 
  $pdf->SetTextColor(0,0,0);

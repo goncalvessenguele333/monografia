@@ -233,6 +233,7 @@ if($_POST['action']=='addProdutoDetalheContrato'){
 		$quantidade=$_POST['quanti'];
 		$codCliente=$_POST['codCliente'];
 		$codproducto=$_POST['codproducto'];
+
 		$token_user=$codigoLog;
 
 
@@ -340,6 +341,7 @@ if($_POST['action']=='addProdutoDetalhe'){
 		$quantidade=$_POST['quanti'];
 		$codCliente=$_POST['codCliente'];
 		$codproducto=$_POST['codproducto'];
+		$desconto=$_POST['desconto'];
 		$token_user=$codigoLog;
 
 
@@ -354,7 +356,8 @@ if($_POST['action']=='addProdutoDetalhe'){
 					'description'		=>$descProduto,
 					'quantidade'		=>$quantidade,
 					'preco'				=>$preco,
-					'subtotal_prod'		=>$precoTotal
+					'subtotal_prod'		=>$precoTotal,
+					'perc_desconto'		=>$desconto
 			));
 		
 $query_detalhe_temp=mysqli_query($conexao,"SELECT * FROM tb_detalhe_temp WHERE token_user='$token_user'");
@@ -381,6 +384,7 @@ $query_detalhe_temp=mysqli_query($conexao,"SELECT * FROM tb_detalhe_temp WHERE t
 							<td colspan="3">'.$data['description'].'</td>
 							<td class="textright">'.$data['quantidade'].'</td>
 							<td class="textright">'.$data['preco'].'</td>
+							<td class="textright">'.$data['perc_desconto'].'</td>
 							<td class="textright">'.$precoTotal1.'</td>
 							<td class="">
 								<button class="btn btn-default" data-toggle="tooltip" title="Elimina o produto" onclick="event.preventDefault();del_produt_detalhe('.$data['correlativo'].');"><i class="far fa-trash-alt "></i></button>
@@ -395,15 +399,23 @@ $query_detalhe_temp=mysqli_query($conexao,"SELECT * FROM tb_detalhe_temp WHERE t
 
 			$detalhe_total_venda ='
 							<tr>
-										<td colspan="6" class="textright">Subtotal Q.</td>
+										<td colspan="7" class="textright">Valor líquido Q.</td>
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">IVA('.$iva.')</td>
+										<td colspan="7" class="textright">Desconto(0%)</td>
+										<td class="textright">'.'0,00'.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">Subtotal</td>
+										<td class="textright">'.$sub_total.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">IVA('.$iva.')</td>
 										<td class="textright">'.$imposto.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">Total</td>
+										<td colspan="7" class="textright">Total</td>
 										<td class="textright">'.$total.'</td>
 									</tr>';
 
@@ -455,6 +467,7 @@ else if(empty($_POST['cod_servico'])){
 		$precoTotal=$_POST['precoTotal'];
 		$quantidade=$_POST['quanti'];
 		$cod_Cliente=$_POST['cod_Cliente'];
+		$desconto=$_POST['desconto'];
 		$token_user=$codigoLog;
 
 
@@ -472,7 +485,8 @@ else if(empty($_POST['cod_servico'])){
 					'description'		=>$descProduto,
 					'quantidade'		=>$quantidade,
 					'preco'				=>$preco,
-					'subtotal_prod'		=>$precoTotal
+					'subtotal_prod'		=>$precoTotal,
+					'perc_desconto'		=>$desconto
 			));
 		
 $query_detalhe_temp=mysqli_query($conexao,"SELECT * FROM tb_detalhe_temp_cotacao WHERE token_user='$token_user'");
@@ -499,6 +513,7 @@ $query_detalhe_temp=mysqli_query($conexao,"SELECT * FROM tb_detalhe_temp_cotacao
 							<td colspan="3">'.$data['description'].'</td>
 							<td class="textright">'.$data['quantidade'].'</td>
 							<td class="textright">'.$data['preco'].'</td>
+							<td class="textright">'.$data['perc_desconto'].'</td>
 							<td class="textright">'.$precoTotal1.'</td>
 							<td class="">
 								<button class="btn btn-default" data-toggle="tooltip" title="Elimina o produto" onclick="event.preventDefault();del_produt_detalhe('.$data['correlativo'].');"><i class="far fa-trash-alt "></i></button>
@@ -513,15 +528,19 @@ $query_detalhe_temp=mysqli_query($conexao,"SELECT * FROM tb_detalhe_temp_cotacao
 
 			$detalhe_total_venda ='
 							<tr>
-										<td colspan="6" class="textright">Subtotal Q.</td>
+										<td colspan="7" class="textright">Subtotal Q.</td>
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">IVA('.$iva.')</td>
+										<td colspan="7" class="textright">Subtotal Q.</td>
+										<td class="textright">'.$sub_total.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">IVA('.$iva.')</td>
 										<td class="textright">'.$imposto.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">Total</td>
+										<td colspan="7" class="textright">Total</td>
 										<td class="textright">'.$total.'</td>
 									</tr>';
 
@@ -554,7 +573,7 @@ if($_POST['action']=='searchForDetalhe'){
 		$token_user=$_POST['user'];
 
 		$query=mysqli_query($conexao,"SELECT correlativo,
-							token_user,codCliente,cod_produto,description,quantidade,
+							token_user,perc_desconto,codCliente,cod_produto,description,quantidade,
 							preco,subtotal_prod FROM tb_detalhe_temp WHERE 
 							token_user=$token_user");
 
@@ -582,6 +601,7 @@ if($_POST['action']=='searchForDetalhe'){
 							<td colspan="3">'.$data['description'].'</td>
 							<td class="textright">'.$data['quantidade'].'</td>
 							<td class="textright">'.$data['preco'].'</td>
+							<td class="textright">'.$data['perc_desconto'].'</td>
 							<td class="textright">'.$precoTotal.'</td>
 							<td class="">
 								<button class="btn btn-default" onclick="event.preventDefault();del_produt_detalhe('.$data['correlativo'].');"><i class="far fa-trash-alt "></i></button>
@@ -595,15 +615,23 @@ if($_POST['action']=='searchForDetalhe'){
 
 			$detalhe_total_venda ='
 							<tr>
-										<td colspan="6" class="textright">Subtotal Q.</td>
+										<td colspan="7" class="textright">Valor líquido Q.</td>
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">IVA('.$iva.')</td>
+										<td colspan="7" class="textright">Desconto(0%)</td>
+										<td class="textright">'.'0,00'.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">Subtotal</td>
+										<td class="textright">'.$sub_total.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">IVA('.$iva.')</td>
 										<td class="textright">'.$imposto.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">Total</td>
+										<td colspan="7" class="textright">Total</td>
 										<td class="textright">'.$total.'</td>
 									</tr>';
 
@@ -700,7 +728,7 @@ if($_POST['action']=='searchForDetalhe_cotacao'){
 
 		$query=mysqli_query($conexao,"SELECT correlativo,
 							token_user,cod_Cliente,cod_servico,description,quantidade,
-							preco,subtotal_prod FROM tb_detalhe_temp_cotacao WHERE 
+							preco,perc_desconto,subtotal_prod FROM tb_detalhe_temp_cotacao WHERE 
 							token_user='$token_user'");
 
 		$result=mysqli_num_rows($query);
@@ -727,6 +755,7 @@ if($_POST['action']=='searchForDetalhe_cotacao'){
 							<td colspan="3">'.$data['description'].'</td>
 							<td class="textright">'.$data['quantidade'].'</td>
 							<td class="textright">'.$data['preco'].'</td>
+							<td class="textright">'.$data['perc_desconto'].'</td>
 							<td class="textright">'.$precoTotal.'</td>
 							<td class="">
 								<button class="btn btn-default" onclick="event.preventDefault();del_produt_detalhe('.$data['correlativo'].');"><i class="far fa-trash-alt "></i></button>
@@ -740,15 +769,19 @@ if($_POST['action']=='searchForDetalhe_cotacao'){
 
 			$detalhe_total_venda ='
 							<tr>
-										<td colspan="6" class="textright">Subtotal Q.</td>
+										<td colspan="7" class="textright">Subtotal Q.</td>
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">IVA('.$iva.')</td>
+										<td colspan="7" class="textright">Desconto(0%)</td>
+										<td class="textright">'.'0.00'.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">IVA('.$iva.')</td>
 										<td class="textright">'.$imposto.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">Total</td>
+										<td colspan="7" class="textright">Total</td>
 										<td class="textright">'.$total.'</td>
 									</tr>';
 
@@ -805,6 +838,7 @@ if($_POST['action']=='apagaProductDetalhe'){
 							<td colspan="3">'.$data['description'].'</td>
 							<td class="textright">'.$data['quantidade'].'</td>
 							<td class="textright">'.$data['preco'].'</td>
+							<td class="textright">'.$data['perc_desconto'].'</td>
 							<td class="textright">'.$precoTotal.'</td>
 							<td class="">
 								<button class="btn btn-default" onclick="event.preventDefault();del_produt_detalhe('.$data['correlativo'].');"><i class="far fa-trash-alt "></i></button>
@@ -819,15 +853,23 @@ if($_POST['action']=='apagaProductDetalhe'){
 
 			$detalhe_total_venda ='
 							<tr>
-										<td colspan="6" class="textright">Subtotal Q.</td>
+										<td colspan="7" class="textright">Valor líquido Q.</td>
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">IVA('.$iva.')</td>
+										<td colspan="7" class="textright">Desconto(0%)</td>
+										<td class="textright">'.'0,00'.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">Subtotal</td>
+										<td class="textright">'.$sub_total.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">IVA('.$iva.')</td>
 										<td class="textright">'.$imposto.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">Total</td>
+										<td colspan="7" class="textright">Total</td>
 										<td class="textright">'.$total.'</td>
 									</tr>';
 
@@ -1082,6 +1124,7 @@ if(empty($_POST['codCliente'])){
 	}
 	else{
 		$codCliente=$_POST['codCliente'];
+		$desconto_total=$_POST['desconto_total'];
 		$token=$codigoLog;
 
 		$dataRegisto=date('Y-m-d');
@@ -1100,7 +1143,7 @@ if(empty($_POST['codCliente'])){
 		}
 
 		if($result > 0){
-			$query_processar=mysqli_query($conexao,"CALL processar_factura($codCliente,'$token',$iva,'$dataRegisto')");
+			$query_processar=mysqli_query($conexao,"CALL processar_factura($codCliente,'$token',$iva,$desconto_total)");
 			$result_detalhe=mysqli_num_rows($query_processar);
 
 			if($result_detalhe > 0){
@@ -1953,6 +1996,93 @@ $v_total=0;
 	}
 	exit;
 }
+
+if($_POST['action']=='descontoFactura'){
+	if(empty($_POST['desconto'])){
+		echo 0;
+	}
+	else if(empty($_POST['codCliente'])){
+		echo 0;
+	}
+	else{
+		$desconto=$_POST['desconto'];
+		$codCliente=$_POST['codCliente'];
+		$token_user=$codigoLog;
+
+
+			$query_iva=mysqli_query($conexao,"SELECT iva FROM tb_cliente WHERE idCliente='$codCliente'");
+		$result_iva=mysqli_num_rows($query_iva);
+
+			$query_detalhe_temp=mysqli_query($conexao,"SELECT * FROM tb_detalhe_temp WHERE token_user='$token_user'");
+
+		$result=mysqli_num_rows($query_detalhe_temp);
+		$detalheTable='';
+		$valor_liquido=0;
+		$iva=0;
+		$total=0;
+		$valor_subtotal=0;
+		$valor_desconto=0;
+		$arrayData=array();
+
+		if($result > 0){
+			if($result_iva > 0){
+				$info_iva=mysqli_fetch_assoc($query_iva);
+					$iva=$info_iva['iva'];
+			
+			while ($data=mysqli_fetch_assoc($query_detalhe_temp)) {
+				$precoTotal1=round($data['quantidade'] * $data['preco'],2);
+				$valor_liquido=round($valor_liquido + $precoTotal1, 2);
+				$valor_desconto=round((($valor_liquido * $desconto)/100),2);
+				$valor_subtotal=round($valor_liquido-(($valor_liquido * $desconto)/100),2);
+				//$total=round($total + $precoTotal1, 2);
+
+			
+			}
+
+			$imposto=round($valor_subtotal * ($iva / 100),2);
+			//$tl_sniva=round($sub_total - $imposto, 2);
+			$total=round($valor_subtotal + $imposto,2);
+
+			$detalhe_total_venda ='
+							<tr>
+										<td colspan="7" class="textright">Valor líquido Q.</td>
+										<td class="textright">'.$valor_liquido.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">Desconto(' .$desconto.'%)</td>
+										<td class="textright">'.$valor_desconto.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">Subtotal</td>
+										<td class="textright">'.$valor_subtotal.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">IVA('.$iva.')</td>
+										<td class="textright">'.$imposto.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">Total</td>
+										<td class="textright">'.$total.'</td>
+									</tr>';
+
+									$arrayData['total']=$detalhe_total_venda;
+
+									echo json_encode($arrayData,JSON_UNESCAPED_UNICODE);
+		
+}
+		}
+		else{
+			$arrayData=0;
+		}
+
+		mysqli_close($conexao);
+
+
+	}
+
+	exit;
+}
+
 
 
 exit;

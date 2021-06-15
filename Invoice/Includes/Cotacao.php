@@ -255,6 +255,7 @@ $('#add_product_venda').click(function(e){
       var preco=$('#txt_preco').val();
       var precoTotal=$('#txt_preco_total').html();
       var cod_Cliente=$('#txtCodigoCliente1').val();
+      var desconto =$('#txt_desconto').val();
       var action='addProdutoDetalheCotacao';
 
 
@@ -262,7 +263,7 @@ $('#add_product_venda').click(function(e){
       url:'../classes/ajax.php',
       type:"POST",
       async:true,
-      data:{action:action,descProduto:descProduto,cod_servico:cod_servico,preco:preco,precoTotal:precoTotal,quanti:quanti,cod_Cliente:cod_Cliente},
+      data:{action:action,descProduto:descProduto,cod_servico:cod_servico,preco:preco,precoTotal:precoTotal,quanti:quanti,cod_Cliente:cod_Cliente,desconto:desconto},
       success: function(response)
       {
         if(response !=0){
@@ -390,6 +391,52 @@ var txtEmail=$('#txtEmail').val();
 
 });
 
+$('#txt_desconto').keyup(function(e){
+      e.preventDefault();
+ if($(this).val() > 0){
+    var desconto=$(this).val();
+       var valorTotal=$('#txt_preco').val() * $('#txt_quant_produto').val();
+       var percentagem=((valorTotal*desconto)/100);
+
+       var valorDescontado=valorTotal-percentagem;
+       $('#txt_preco_total').html(valorDescontado);
+ }
+ else{
+       var valorTotal=$('#txt_preco').val() * $('#txt_quant_produto').val();
+       $('#txt_preco_total').html(valorTotal);
+ }
+      
+     //alert(valorTotal):
+});
+
+
+$('#btnDesconto_total').click(function(e){
+  e.preventDefault();
+
+  var desconto=$('#txt_desconto_total').val();
+  var codCliente=$('#txtCodigoCliente1').val();
+   var action='descontoCotacao';
+
+  $.ajax({
+    url:'../classes/ajax.php',
+      type:"POST",
+      async:true,
+      data:{action:action,codCliente:codCliente,desconto:desconto},
+      success: function(response)
+      {
+        
+        if(response !=0){
+          var info=JSON.parse(response);
+          console.log(response);
+         $('#detalhe_total_venda').html(info.total);
+        }
+      },
+      error:function(error){
+
+      }
+  })
+
+});
  
 });//Fim do ready
 
@@ -438,9 +485,14 @@ function gerarPDF(cliente,factura){
 function viewProcessar(){
   if($('#detalhe_venda tr').length > 0){
     $('#btn_facturar_venda').show();
+     $('#btnDesconto_total').show();
+      $('#txt_desconto_total').show();
+
   }
   else{
     $('#btn_facturar_venda').hide();
+    $('#btnDesconto_total').hide();
+       $('#txt_desconto_total').hide();
   }
 }
 
@@ -808,7 +860,7 @@ function viewProcessar(){
     </form>
     </div>
   <div class="title_page">
-    <h3>Dados de factura</h3>
+    <h3>Dados da cotação</h3>
     
   </div>
   
@@ -817,15 +869,28 @@ function viewProcessar(){
  
   <div class="dados_venda">
     <div class="dados">
-    <div class="wd50">
+      <div class="wd50">
         
-
-         <div id="Acciones_venda">
+       <div id="Acciones_venda">
 
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-6">
                 <div class="form-group">
-                  <label>Vendedor</label>
+                  <label>Operador</label>
+                </div>
+              </div>
+               <div class="col-md-4">
+                <div class="form-group">
+                  <label>Acções</label>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label for="ckbAplicarDesconto" id="lblDescontar" style="display: none;">Descontar</label>
+                </div>
+              </div>
+               <div class="col-md-6">
+                 <div class="form-group">
                   <?php
 
 foreach ($user->FuncionarioLog($codigo) as $lista) {
@@ -837,22 +902,26 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
 
                 </div>                
               </div>
-               <div class="col-md-2">
+
+            <div class="col-md-2">
                 <div class="form-group">
-                  
+                  <button id="btn_anular_venda" class="btn btn-danger"><i class="fas fa-ban"></i> Anular</button>
                 </div>                
               </div>
-               <div class="col-md-3">
-                <div class="form-group">
-                  <label>Acciones</label>
-                  <br>
-                  <button id="btn_anular_venda" class="btn btn-danger"><i class="fas fa-ban"></i> Anular</button>
+               <div class="col-md-2">
+                <div class="form-group">                 
                   <button class="btn btn-success" style="display: none;" id="btn_facturar_venda"><i class="fas fa-edit"></i> Processar</button>
                 </div>                
-              </div>              
+              </div> 
+               <div class="col-md-2">
+                <div class="form-group">       
+                 <input type="checkbox"  name="ckbAplicarDesconto" class="form-control" id="ckbAplicarDesconto" style="display: none;">
+                </div>                
+              </div> 
+
             </div>
         </div>
-        
+          
       </div>
     </div>
     
@@ -867,6 +936,7 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
       <th width="300px" colspan="3">Descrição</th>          
       <th width="120px">Quantidade</th>
       <th class="textright"> Preço</th>
+      <th class="textright">Desconto</th>
       <th class="textright"> Preço total </th>
       <th> Acção</th>
     </tr>
@@ -877,8 +947,9 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
       
       <td><input type="number" class="form-control" name="txt_quant_produto" id="txt_quant_produto" placeholder="0" min="1"></td>
       <td><input type="text" id="txt_preco" class="form-control" name="txt_preco" placeholder="0.00"></td>
+          <td><input type="text" id="txt_desconto" class="form-control" name="txt_desconto" placeholder="Desconto em %"></td>
       <td id="txt_preco_total" class="textright">0.00</td>
-      <td><button id="add_product_venda" class="btn btn-info"><i class="fas fa-plus"></i>Agregar</button></td>
+      <td><button id="add_product_venda" class="btn btn-info"><i class="fas fa-plus"></i></button></td>
     </tr>
     <tr><td colspan="6"><span id="msgErrorAgregar"></span></td></tr>
    
@@ -888,6 +959,7 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
       <th colspan="3">Descrição</th>
       <th>Quantidade</th>
       <th class="textright">Preço</th>
+      <th class="textright">Desconto</th>
       <th class="textright">Preço Total</th>
       <th>Acção</th>
     </tr>
@@ -900,6 +972,24 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
 
   </tfoot>  
 </table>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+       <input type="text" name="txt_desconto_total" id="txt_desconto_total" class="form-control" placeholder="Digite o desconto em percentagem" value="0" style="display: none;">
+
+    </div>
+    
+  </div>
+  <div class="col-md-3">
+    <div class="form-group">
+       <button class="btn btn-success" id="btnDesconto_total" style="display: none;"><i class="fas fa-check-square"></i></button>
+       
+    </div>
+    
+  </div>
+  
+</div>
 
 </section>
 
