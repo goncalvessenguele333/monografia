@@ -532,6 +532,10 @@ $query_detalhe_temp=mysqli_query($conexao,"SELECT * FROM tb_detalhe_temp_cotacao
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
+										<td colspan="7" class="textright">Desconto(0%)</td>
+										<td class="textright">'.'0.00'.'</td>
+									</tr>
+									<tr>
 										<td colspan="7" class="textright">Subtotal Q.</td>
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
@@ -769,12 +773,16 @@ if($_POST['action']=='searchForDetalhe_cotacao'){
 
 			$detalhe_total_venda ='
 							<tr>
-										<td colspan="7" class="textright">Subtotal Q.</td>
+										<td colspan="7" class="textright">Valor líquido.</td>
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
 										<td colspan="7" class="textright">Desconto(0%)</td>
 										<td class="textright">'.'0.00'.'</td>
+									</tr>
+										<tr>
+										<td colspan="7" class="textright">Subtotal Q.</td>
+										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
 										<td colspan="7" class="textright">IVA('.$iva.')</td>
@@ -853,7 +861,7 @@ if($_POST['action']=='apagaProductDetalhe'){
 
 			$detalhe_total_venda ='
 							<tr>
-										<td colspan="7" class="textright">Valor líquido Q.</td>
+										<td colspan="7" class="textright">Valor líquido</td>
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
@@ -996,6 +1004,7 @@ if($_POST['action']=='apagaProductDetalhe_cotacao'){
 							<td colspan="3">'.$data['description'].'</td>
 							<td class="textright">'.$data['quantidade'].'</td>
 							<td class="textright">'.$data['preco'].'</td>
+								<td class="textright">'.$data['perc_desconto'].'</td>
 							<td class="textright">'.$precoTotal.'</td>
 							<td class="">
 								<button class="btn btn-default" onclick="event.preventDefault();del_produt_detalhe('.$data['correlativo'].');"><i class="far fa-trash-alt "></i></button>
@@ -1010,15 +1019,23 @@ if($_POST['action']=='apagaProductDetalhe_cotacao'){
 
 			$detalhe_total_venda ='
 							<tr>
-										<td colspan="6" class="textright">Subtotal Q.</td>
+										<td colspan="7" class="textright">Valor líquido.</td>
+										<td class="textright">'.$sub_total.'</td>
+									</tr>
+										<tr>
+										<td colspan="7" class="textright">Desconto(0%).</td>
+										<td class="textright">'.'0.00'.'</td>
+									</tr>
+										<tr>
+										<td colspan="7" class="textright">Subtotal Q.</td>
 										<td class="textright">'.$sub_total.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">IVA('.$iva.')</td>
+										<td colspan="7" class="textright">IVA('.$iva.')</td>
 										<td class="textright">'.$imposto.'</td>
 									</tr>
 									<tr>
-										<td colspan="6" class="textright">Total</td>
+										<td colspan="7" class="textright">Total</td>
 										<td class="textright">'.$total.'</td>
 									</tr>';
 
@@ -1244,6 +1261,7 @@ if(empty($_POST['codCliente'])){
 		$codCliente=$_POST['codCliente'];
 		$token=$codigoLog;
 		$dataRegisto=date('Y-m-d');
+		$desconto_t=$_POST['desconto_t'];
 		
 		
 		$iva=0;
@@ -1259,7 +1277,7 @@ if(empty($_POST['codCliente'])){
 		}
 
 		if($result > 0){
-			$query_processar=mysqli_query($conexao,"CALL processar_cotacao($codCliente,'$token',$iva,'$dataRegisto')");
+			$query_processar=mysqli_query($conexao,"CALL processar_cotacao($codCliente,'$token',$iva,$desconto_t)");
 			$result_detalhe=mysqli_num_rows($query_processar);
 
 			if($result_detalhe > 0){
@@ -2082,6 +2100,95 @@ if($_POST['action']=='descontoFactura'){
 
 	exit;
 }
+
+
+
+if($_POST['action']=='descontoCotacao'){
+	if(empty($_POST['desconto'])){
+		echo 0;
+	}
+	else if(empty($_POST['codCliente'])){
+		echo 0;
+	}
+	else{
+		$desconto=$_POST['desconto'];
+		$codCliente=$_POST['codCliente'];
+		$token_user=$codigoLog;
+
+
+			$query_iva=mysqli_query($conexao,"SELECT iva FROM tb_cliente WHERE idCliente='$codCliente'");
+		$result_iva=mysqli_num_rows($query_iva);
+
+			$query_detalhe_temp=mysqli_query($conexao,"SELECT * FROM tb_detalhe_temp_cotacao WHERE token_user='$token_user'");
+
+		$result=mysqli_num_rows($query_detalhe_temp);
+		$detalheTable='';
+		$valor_liquido=0;
+		$iva=0;
+		$total=0;
+		$valor_subtotal=0;
+		$valor_desconto=0;
+		$arrayData=array();
+
+		if($result > 0){
+			if($result_iva > 0){
+				$info_iva=mysqli_fetch_assoc($query_iva);
+					$iva=$info_iva['iva'];
+			
+			while ($data=mysqli_fetch_assoc($query_detalhe_temp)) {
+				$precoTotal1=round($data['quantidade'] * $data['preco'],2);
+				$valor_liquido=round($valor_liquido + $precoTotal1, 2);
+				$valor_desconto=round((($valor_liquido * $desconto)/100),2);
+				$valor_subtotal=round($valor_liquido-(($valor_liquido * $desconto)/100),2);
+				//$total=round($total + $precoTotal1, 2);
+
+			
+			}
+
+			$imposto=round($valor_subtotal * ($iva / 100),2);
+			//$tl_sniva=round($sub_total - $imposto, 2);
+			$total=round($valor_subtotal + $imposto,2);
+
+			$detalhe_total_venda ='
+							<tr>
+										<td colspan="7" class="textright">Valor líquido Q.</td>
+										<td class="textright">'.$valor_liquido.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">Desconto(' .$desconto.'%)</td>
+										<td class="textright">'.$valor_desconto.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">Subtotal</td>
+										<td class="textright">'.$valor_subtotal.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">IVA('.$iva.')</td>
+										<td class="textright">'.$imposto.'</td>
+									</tr>
+									<tr>
+										<td colspan="7" class="textright">Total</td>
+										<td class="textright">'.$total.'</td>
+									</tr>';
+
+									$arrayData['total']=$detalhe_total_venda;
+
+									echo json_encode($arrayData,JSON_UNESCAPED_UNICODE);
+		
+}
+		}
+		else{
+			$arrayData=0;
+		}
+
+		mysqli_close($conexao);
+
+
+	}
+
+	exit;
+}
+
 
 
 

@@ -268,7 +268,7 @@ public function detalheTotalFactura($codFactura){
 }
 
 public function detalheTotal_cotacao($codFactura){
-	$sql=$this->_db->consulta("SELECT nr_factura, usuario, cod_cliente, subtotal_factura, iva_factura, total_factura, estado,dataVenda, Year(dataVenda) as ano FROM tb_cotacao WHERE nr_factura='$codFactura'");
+	$sql=$this->_db->consulta("SELECT nr_factura, usuario, cod_cliente, subtotal_factura,perc_desconto,valor_descontado, iva_factura, total_factura, estado,dataVenda, Year(dataVenda) as ano FROM tb_cotacao WHERE nr_factura='$codFactura'");
 	if($sql){
 		return $sql->results();
 	}
@@ -334,8 +334,7 @@ public function detalheFactura($codi_prod){
 	
 }
 public function detalheCotacao($codi_prod){
-	$sql=$this->_db->consulta("SELECT df.correlativo,df.cod_servico, df.description, df.quantidade,       
-								df.preco, df.subtotal_prod FROM tb_detalhe_cotacao df INNER JOIN 
+	$sql=$this->_db->consulta("SELECT df.correlativo,df.cod_servico, df.description, df.quantidade, df.preco,df.perc_desconto,df.subtotal_prod FROM tb_detalhe_cotacao df INNER JOIN 
 								tb_cotacao f ON df.nr_factura=f.nr_factura WHERE
 								 f.nr_factura='$codi_prod'");
 	if($sql){

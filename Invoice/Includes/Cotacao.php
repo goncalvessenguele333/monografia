@@ -296,7 +296,7 @@ $('#add_product_venda').click(function(e){
         e.preventDefault();
 
     var rows = $('#detalhe_venda tr').length;
-    
+    var desconto_t=$('#txt_desconto_total').val();
     if(rows > 0){
   var action='processar_cotacao';
   var codCliente=$('#idCliente').val();
@@ -305,7 +305,7 @@ $('#add_product_venda').click(function(e){
     url:'../classes/ajax.php',
       type:"POST",
       async:true,
-      data:{action:action,codCliente:codCliente},
+      data:{action:action,codCliente:codCliente,desconto_t:desconto_t},
       success: function(response)
       {       
         if(response !=0){
