@@ -223,7 +223,7 @@ foreach ($prod->detalheFactura($coFact) as $lista) {
                 $pdf->SetFont('Times','',11);          
         $pdf->Cell(60,8,utf8_decode('Desc.('.escape($lista->perc_desconto).'%): '),0,0,'R');
 
-      $valor_desconto= (escape($lista->subtotal_factura * escape($lista->perc_desconto))/100);
+      $valor_desconto= round(escape($lista->subtotal_factura * escape($lista->perc_desconto))/100);
 
           $pdf->Cell(20,8,$valor_desconto.'.00',0,0,'L');
            $pdf->Ln(3);

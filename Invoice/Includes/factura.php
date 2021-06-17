@@ -280,7 +280,7 @@ $('#add_product_venda').click(function(e){
           $('#txt_descripcion').val('');          
           $('#txt_quant_produto').val('');
           $('#txt_preco').val('');
-          $('#txt_desconto').val('');
+          $('#txt_desconto').val('0');
           $('#txt_preco_total').html('0.00');         
           $('#add_product_venda').slideUp();
         }
@@ -339,6 +339,7 @@ $('#txt_desconto').keyup(function(e){
           console.log(response);
           gerarPDF(info.cod_cliente,info.nr_factura);
           //location.reload();
+          $('#txt_desconto_total').val('0');
       }
       else{
         console.log('no data');
@@ -396,6 +397,7 @@ $('#btnDesconto_total').click(function(e){
           var info=JSON.parse(response);
           console.log(response);
          $('#detalhe_total_venda').html(info.total);
+         
         }
       },
       error:function(error){
@@ -908,7 +910,7 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
       <th width="300px" colspan="3">Descrição</th>          
       <th width="120px">Quantidade</th>
       <th class="textright"> Preço</th>
-        <th class="textright">Desconto</th>
+        <th class="textright">Desconto em %</th>
       <th class="textright">Total </th>
       <th> Acção</th>
     </tr>
@@ -919,7 +921,7 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
       
       <td><input type="number" class="form-control" name="txt_quant_produto" id="txt_quant_produto" placeholder="0" min="1"></td>
       <td><input type="text" id="txt_preco" class="form-control" name="txt_preco" placeholder="0.00"></td>
-       <td><input type="text" id="txt_desconto" class="form-control" name="txt_desconto" placeholder="Desconto em %"></td>
+       <td><input type="text" id="txt_desconto" class="form-control" value="0" name="txt_desconto" placeholder="Desconto em %"></td>
       <td id="txt_preco_total" class="textright">0.00</td>
       <td><button id="add_product_venda" class="btn btn-info"><i class="fas fa-plus"></i></button></td>
     </tr>
@@ -931,7 +933,7 @@ foreach ($user->FuncionarioLog($codigo) as $lista) {
       <th colspan="3">Descrição</th>
       <th>Quantidade</th>
       <th class="textright">Preço</th>
-      <th class="textright">Desconto</th>
+      <th class="textright">Desconto em %</th>
       <th class="textright">Total</th>
       <th>Acção</th>
     </tr>

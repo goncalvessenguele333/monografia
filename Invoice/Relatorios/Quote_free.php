@@ -185,7 +185,8 @@ foreach ($prod->detalheCotacao($coFact) as $lista) {
             $pdf->SetXY($xPos + 95, $yPos);
              $pdf->Cell(12,10,escape($lista->quantidade),0,0,'C',1);
             $pdf->Cell(23,10,escape($lista->preco),0,0,'C',1);
-            $desconto=(escape($lista->subtotal_prod)*escape($lista->perc_desconto)/100);
+
+            $desconto=escape($lista->subtotal_prod) * escape($lista->perc_desconto)/100;
               $pdf->Cell(20,10, $desconto.'.00',0,0,'C',1);
               $valor_subtotal=(escape($lista->subtotal_prod)-$desconto);
              $pdf->Cell(25,10,$valor_subtotal.'.00',0,0,'C',1);
@@ -244,7 +245,8 @@ foreach ($prod->detalheCotacao($coFact) as $lista) {
                 $pdf->SetFont('Times','',10);          
           $pdf->Cell(60,3,'Desc.('.escape($lista->perc_desconto).'%): ',0,0,'R',1);
 
-          $v_desconto=(escape($lista->subtotal_factura)*(escape($lista->perc_desconto)/100));
+          $v_desconto=round((escape($lista->subtotal_factura)*(escape($lista->perc_desconto)/100)));
+
           $pdf->Cell(20,3,$v_desconto,0,0,'L',1);
            $pdf->Ln(3);
             $pdf->Cell(140,3,"",0,0,'L'); 
