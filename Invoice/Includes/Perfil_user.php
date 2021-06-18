@@ -8,7 +8,7 @@ if(Session::exists('home')){
 
 $user=new User();
 if(!$user->isLoggedIn()){
-  Redirect::to('../Index.php');
+  Redirect::to('../index.php');
  }
 if($user->isLoggedIn()){
 $codigo= ($user->data()->id); 
@@ -165,7 +165,7 @@ if(response !=0){
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="Principal.html" class="brand-link">
+    <a href="Principal.php" class="brand-link">
       <img src="../Contents/images/logo.png" alt="Logo" class="brand-image elevation-3"
            style="opacity: .8">
    

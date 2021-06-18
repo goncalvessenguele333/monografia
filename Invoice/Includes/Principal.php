@@ -9,7 +9,7 @@ if(Session::exists('home')){
 
 $user=new User();
 if(!$user->isLoggedIn()){
-  Redirect::to('../Index.php');
+  Redirect::to('../index.php');
  }
 if($user->isLoggedIn()){
 $codigo= ($user->data()->id); 
@@ -26,7 +26,7 @@ foreach ($user->FuncionarioLog($codigo) as $lista)
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>sistema de facturação</title>
+  <title>Sistema de facturação</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -38,13 +38,26 @@ foreach ($user->FuncionarioLog($codigo) as $lista)
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="../Contents/Estilos/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style type="text/css">
+  .navbar-nav{
+ margin-right: 8%;
+}
+.main-header .navbar-nav i{
+font-size: 25px;
+}
+</style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
-  <!-- Navbar -->
+
+
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
+
+
+     
+       <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
@@ -53,16 +66,34 @@ foreach ($user->FuncionarioLog($codigo) as $lista)
       </li>
      
     </ul>  
+   
+       <ul class="navbar-nav ">
+      <li class="nav-item">
+        <a href="enviar_email.php" class="nav-link" ><i class="fas fa-envelope"></i>Enviar email</a>
+      </li>
+      </ul>
 
-  
-<ul class="navbar-nav ">
+   <ul class="navbar-nav">
+  <li class="nav-item">
+        <a href="#" class="nav-link" ><i class="fa fa-file-pdf-o"></i>Documentos</a>
+      </li>
+  </ul>
+   <ul class="navbar-nav">
+  <li class="nav-item">
+        <a href="#" class="nav-link" ><i class="fa fa-gear fa-spin"></i>Manual</a>
+      </li>
+  </ul>
+ 
+  <ul class="navbar-nav">
   <li class="nav-item">
         <a href="Logout.php" class="nav-link" ><i class="fas fa-power-off"></i></a>
       </li>
-</ul>
+  </ul>
+
+
 
   </nav>
-  <!-- /.navbar -->
+  
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">

@@ -5,7 +5,7 @@ include '../classes/Conexaodb.php';
 $user=new User();
 
 if(!$user->isLoggedIn()){
-  Redirect::to('../Index.php');
+  Redirect::to('../index.php');
  }
 
 if($user->isLoggedIn()){

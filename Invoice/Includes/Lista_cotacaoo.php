@@ -4,7 +4,7 @@ include '../classes/Conexaodb.php';
 $user=new User();
 //$categoria=new Produto();
 if(!$user->isLoggedIn()){
-  Redirect::to('../Index.php');
+  Redirect::to('../index.php');
  }
 
 if($user->isLoggedIn()){

@@ -9,7 +9,7 @@ if(Session::exists('home')){
 }
 
 if(!$user->isLoggedIn()){
-  Redirect::to('../Index.php');
+  Redirect::to('../index.php');
  }
 
 $msg = false;

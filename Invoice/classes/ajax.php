@@ -2201,7 +2201,145 @@ if($_POST['action']=='descontoCotacao'){
 
 	exit;
 }
+if($_POST['action']=='send_email'){
 
+	if(empty($_POST['email_deliver'])){
+		echo 0;
+	}
+	else if(empty($_POST['email_subject'])){
+		echo 0;
+	}
+	else if(empty($_POST['email_message'])){
+		echo 0;
+	}
+	else{
+		$email_deliver=$_POST['email_deliver'];
+		$email_subject=$_POST['email_subject'];
+		$email_message=$_POST['email_message'];
+		$data_envio = date('d/m/Y');
+		$hora_envio = date('H:i:s');
+
+if (!filter_var($email_deliver, FILTER_VALIDATE_EMAIL)) {
+  echo 1;
+}
+else{
+
+	require "../PHPMailer/PHPMailerAutoload.php"; 
+
+$mail = new PHPMailer(); 
+$mail->IsSMTP(); 
+$mail->Host = 'mail.multicastservicos.co.mz'; 
+$mail->SMTPAuth = true; 
+$mail->SMTPSecure='tls';
+
+$mail->Username = 'gsenguele@multicastservicos.co.mz'; 
+$mail->Password = 'senguele1988'; 
+$mail->SMTPSecure ='ssl';
+$mail->Port = 465; 
+
+$mail->SMTPOptions = array('ssl' => array( 'verify_peer' =>false, 'verify_peer_name' => false, 'allow_self_signed' => true ) );
+
+
+
+
+	$user=new User();
+
+	foreach ($user->FuncionarioLog($codigoLog) as $lista) 
+{
+	$email_sender= escape($lista->username);
+
+}
+
+$arquivo = "
+ <style type='text/css'>
+     body {
+        margin:0px;
+        font-family:times new romans;
+        font-size:1.0em;
+      color: #000;
+    }
+    table{
+      border: 1px solid #000;
+   
+}
+tr {
+    height: 35px;
+     text-align: justify;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    line-height: 1.5;
+
+}
+tr, td {
+    padding: 15px;
+    text-align: justify;
+}
+td{
+  vertical-align: top;
+}
+  a{
+  color: #666666;
+  text-decoration: none;
+  }
+  a:hover {
+  color: #FF0000;
+  text-decoration: none;
+  }
+  </style>
+   <meta charset='utf-8'>
+    <html>
+        <table width='60%' border='0' cellpadding='1' cellspacing='1' bgcolor='#fff'>
+            <tr>
+              <td>
+  <tr>
+                 <td width='150'><b>Nome:</b></td><td> Multcast Serviços E.I </td>
+                </tr>
+                <tr>
+                  <td width='150'><b>E-mail:</b></td><td> $email_sender </td>
+     </tr>
+      <tr>
+                  <td width='150'><b>Assunto:</b></td><td><b> $email_subject </b></td>
+                </tr>
+    
+                <tr>
+                  <td width='150'><b>Mensagem:</b></td><td> $email_message </td>
+                </tr>
+            </td>
+          </tr>
+          <tr>
+            <td width='150'><b>Enviado em </b></td><td>$data_envio às $hora_envio</td>
+          </tr>
+        </table>
+    </html>
+  ";
+
+
+ $mail->setFrom($email_sender,'Multicast Serviços E.I'); 
+$mail->addAddress($email_deliver,'Multicast Serviços E.I'); 
+ 
+$mail->addReplyTo($email_sender,'Multicast Serviços E.I');
+
+$mail->IsHTML(true); 
+$mail->CharSet = 'UTF-8'; 
+$mail->Subject= $email_subject; 
+
+$mail->Body=$arquivo; 
+$enviado=$mail->send();
+ if($enviado)
+{ 
+		echo 2;
+} 
+else { 
+    echo "Houve um erro enviando o email: ".$mail->ErrorInfo; 
+} 
+
+
+}
+	}
+
+
+	exit;
+}
 
 
 

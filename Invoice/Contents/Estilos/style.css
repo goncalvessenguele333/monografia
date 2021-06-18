@@ -8,7 +8,10 @@
 
 }
 .navbar-nav{
-	margin-right: 80%;
+ margin-right: 8%;
+}
+.main-header .navbar-nav i{
+font-size: 25px;
 }
 .navbar-nav .fa-power-off{
 	cursor: pointer;

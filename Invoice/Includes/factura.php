@@ -8,7 +8,7 @@ if(Session::exists('home')){
 
 $user=new User();
 if(!$user->isLoggedIn()){
-  Redirect::to('../Index.php');
+  Redirect::to('../index.php');
  }
 if($user->isLoggedIn()){
 $codigo= ($user->data()->id); 
